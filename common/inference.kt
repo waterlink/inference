@@ -1,7 +1,9 @@
 package com.tddfellow.inference
 
 data class Relation(val name: String, val subject: String, val relative: String) {
-    private fun matcherFor(value: String, getter: (Relation) -> String): (Relation) -> Boolean {
+    private fun matcherFor(getter: (Relation) -> String): (Relation) -> Boolean {
+        val value = getter(this)
+
         return if (value == "?") {
             { getter(it) != "?" }
         } else {
@@ -9,17 +11,13 @@ data class Relation(val name: String, val subject: String, val relative: String)
         }
     }
 
-    val matchers = listOf(
-            matcherFor(name) { it.name },
-            matcherFor(subject) { it.subject },
-            matcherFor(relative) { it.relative }
-    )
-
     val extractors: List<(Relation) -> String> = listOf(
             { it -> it.name },
             { it -> it.subject },
             { it -> it.relative }
     )
+
+    val matchers = extractors.map { matcherFor(it) }
 
     val freeExtractors = extractors.filter { it(this) == "?" }
 
