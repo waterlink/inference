@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inference Web Editor</title>
+
+    <style>
+        .queries__query__matcher {
+            display: inline;
+            margin-left: 10px;
+            margin-right: 10px;
+            background-color: lightblue;
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        .queries__query__matcher-joined {
+            background-color: lightgreen;
+        }
+
+        .queries__query__relation-name {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+
+  <h1>Inference Web Editor</h1>
+
+  <div id="main">
+      <div id="content">
+          <div id="content__queries"></div>
+      </div>
+      <div id="query">
+          >>>
+          <input type="text" id="query__text" />
+          <button id="query__add">Add</button>
+      </div>
+  </div>
+
+  <script src="/inference/out/production/js/lib/kotlin.js"></script>
+  <script src="/inference/out/production/js/lib/stdlib.meta.js"></script>
+  <script src="/inference/out/production/js/js.js"></script>
+  <script src="/inference/out/production/js/js.meta.js"></script>
+
+  <script>
+      Kotlin.modules.js.com.tddfellow.inference.editor.start();
+  </script>
+</body>
+</html>
