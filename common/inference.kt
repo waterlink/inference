@@ -72,7 +72,7 @@ fun join(
     return left.flatMap { relation ->
         right.map { rightValue(it) }
                 .filter { it == leftValue(relation) }
-    }
+    }.distinct()
 }
 
 fun join(
